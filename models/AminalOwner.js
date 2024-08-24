@@ -1,8 +1,7 @@
-
 import { DataTypes } from "sequelize";
 import sequelize from "../db.js";
 
-const Staff = sequelize.define("Staff", {
+const AnimalOwner = sequelize.define("AnimalOwner", {
   id: {
     type: DataTypes.UUID,
     defaultValue: DataTypes.UUIDV4,
@@ -12,28 +11,19 @@ const Staff = sequelize.define("Staff", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  address: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-  },
   contact: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  nic: {
+  address: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  password: {
+  nic:{
     type: DataTypes.STRING,
     allowNull: false,
-  },
-
+    unique: true, 
+  }
 });
 
-export default Staff;
+export default AnimalOwner;

@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db.js";
+import AnimalOwner from "./AminalOwner.js"; 
 
 const Animal = sequelize.define("Animal", {
   id: {
@@ -7,6 +8,7 @@ const Animal = sequelize.define("Animal", {
     defaultValue: DataTypes.UUIDV4,
     primaryKey: true,
   },
+
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -31,6 +33,19 @@ const Animal = sequelize.define("Animal", {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  animalOwnerNic: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    references: {
+      model: AnimalOwner, // The model being referenced
+      key: "nic", // The column being referenced
+    },
+  },
 });
+
+Animal.belongsTo(AnimalOwner, { foreignKey: "animalOwnerNic" });
+
+
+
 
 export default Animal;

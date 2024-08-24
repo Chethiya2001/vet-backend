@@ -33,6 +33,10 @@ const Doctor = sequelize.define("Doctor", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 
   nic: {
     type: DataTypes.STRING,
