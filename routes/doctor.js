@@ -3,7 +3,6 @@ import express from "express";
 import {
   addDoctor,
   getDoctors,
-  getDoctorById,
   updateDoctor,
   deleteDoctor,
   getDoctorByName,

@@ -7,6 +7,7 @@ import AnimalRoutes from "./routes/animal.js";
 import AnimalOwnerRoutes from "./routes/animal-owner.js";
 import sequelize from "./db.js";
 import AppoimentRoutes from "./routes/appoment.js";
+import TreatmentRoutes from "./routes/treatment.js";
 
 const app = express();
 const PORT = 3000;
@@ -20,6 +21,7 @@ app.use("/staff", starfRoutes);
 app.use("/animal", AnimalRoutes);
 app.use("/animal-owner", AnimalOwnerRoutes);
 app.use("/appoiment", AppoimentRoutes);
+app.use("/treatment", TreatmentRoutes);
 
 const startServer = async () => {
   try {

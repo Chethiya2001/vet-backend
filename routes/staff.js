@@ -15,4 +15,4 @@ router.get("/:id", getStaffById);
 router.put("/:id", updateStaff);
 router.delete("/:id", deleteStaff);
 
-export default router; // Ensure you have this default export
+export default router; 
