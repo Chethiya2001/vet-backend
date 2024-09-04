@@ -1,4 +1,3 @@
-
 import { DataTypes } from "sequelize";
 import sequelize from "../db.js";
 
@@ -32,8 +31,12 @@ const Admin = sequelize.define("Admin", {
   nic: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
-
+  },
+  role: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    defaultValue: "user",
+  },
 });
 
 export default Admin;

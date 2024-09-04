@@ -36,7 +36,9 @@ export const addDoctor = async (req, res) => {
 };
 export const getDoctors = async (req, res) => {
   try {
-    const doctors = await Doctor.findAll();
+    const doctors = await Doctor.findAll({
+      attributes: ["id", "name"],
+    });
     res.status(200).json(doctors);
   } catch (error) {
     res.status(500).send(`Error fetching doctors: ${error.message}`);
@@ -118,7 +120,6 @@ export const getDoctorByName = async (req, res) => {
   try {
     const { name } = req.params;
 
-   
     const animal = await Doctor.findOne({
       where: {
         name: name,

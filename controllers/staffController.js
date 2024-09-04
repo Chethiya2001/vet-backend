@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 export const addStaff = async (req, res) => {
   try {
     const { name, address, email, contact, nic, password } = req.body;
-    // Hash the password before saving it
     const hashedPassword = await bcrypt.hash(password, 10);
     const staff = await Staff.create({
       name,
@@ -16,12 +15,14 @@ export const addStaff = async (req, res) => {
     });
     res.status(201).json({
       message: "Staff added successfully",
-      animal: staff,
+      staff,
     });
   } catch (error) {
-    res.status(500).send(`Error creating user: ${error.message}`);
+    console.error("Error creating staff:", error); // Log the error
+    res.status(500).json({ message: `Error creating staff: ${error.message}` }); // Ensure response is JSON
   }
 };
+
 export const getStaff = async (req, res) => {
   try {
     const staffs = await Staff.findAll();

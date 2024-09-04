@@ -2,6 +2,7 @@ import Appointment from "../models/Appoiment.js";
 import Animal from "../models/Aminal.js";
 import Doctor from "../models/Doctor.js";
 import AnimalOwner from "../models/AminalOwner.js";
+import { Op } from "sequelize";
 
 // Create a new appointment
 export const addAppointment = async (req, res) => {
@@ -26,6 +27,45 @@ export const addAppointment = async (req, res) => {
     res
       .status(500)
       .json({ message: `Error adding appointment: ${error.message}` });
+  }
+};
+// Get appointments by date
+
+// Get appointments by date
+export const getAppointmentsByDate = async (req, res) => {
+  try {
+    const { date } = req.query;
+
+    if (!date) {
+      return res
+        .status(400)
+        .json({ message: "Date query parameter is required" });
+    }
+
+    const appointments = await Appointment.findAll({
+      where: {
+        date: {
+          [Op.startsWith]: date, // Example using Sequelize with `Op` operator
+        },
+      },
+      include: [
+        { model: Animal, attributes: ["name"] },
+        { model: Doctor, attributes: ["name"] },
+        { model: AnimalOwner, attributes: ["name", "nic"] },
+      ],
+    });
+
+    if (appointments.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No appointments found for the given date" });
+    }
+
+    res.status(200).json(appointments);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: `Error fetching appointments: ${error.message}` });
   }
 };
 // Get all appointments

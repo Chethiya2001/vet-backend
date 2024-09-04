@@ -15,7 +15,17 @@ const upload = multer({ storage });
 
 export const addTreatment = async (req, res) => {
   try {
-    const { description, dosage, quantity, remark, date, price } = req.body;
+    const {
+      description,
+      dosage,
+      quantity,
+      remark,
+      date,
+      price,
+      doctorId,
+      animal_name,
+      owner_nic,
+    } = req.body;
 
     let prescriptionPath = null;
     if (req.file) {
@@ -30,6 +40,9 @@ export const addTreatment = async (req, res) => {
       date,
       price,
       prescription: prescriptionPath,
+      doctorId,
+      animal_name,
+      owner_nic,
     });
 
     res.status(201).json({

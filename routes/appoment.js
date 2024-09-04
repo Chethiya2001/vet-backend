@@ -8,6 +8,7 @@ import {
   getAppointmentById,
   updateAppointment,
   deleteAppointment,
+  getAppointmentsByDate,
 } from "../controllers/appoimentController.js";
 
 // Route to add a new appointment
@@ -15,6 +16,9 @@ router.post("/", addAppointment);
 
 // Route to get all appointments
 router.get("/", getAppointments);
+
+// Route to get appointments by date
+router.get("/date", getAppointmentsByDate);
 
 // Route to get a specific appointment by ID
 router.get("/:id", getAppointmentById);

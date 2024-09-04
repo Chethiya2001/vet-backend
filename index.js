@@ -8,11 +8,18 @@ import AnimalOwnerRoutes from "./routes/animal-owner.js";
 import sequelize from "./db.js";
 import AppoimentRoutes from "./routes/appoment.js";
 import TreatmentRoutes from "./routes/treatment.js";
+import cors from "cors";
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(bodyParser.json());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
 app.use("/auth", AuthRoutes);
 app.use("/auth/login", AuthRoutes);

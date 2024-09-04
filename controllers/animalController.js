@@ -1,8 +1,7 @@
 // controllers/animalController.js
 import Animal from "../models/Aminal.js";
 
-// Create a new animal record
-// Create a new animal record
+
 export const addAnimal = async (req, res) => {
   try {
     const { name, address, age, breed, gender, weight, animalOwnerNic } =
