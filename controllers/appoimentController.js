@@ -7,13 +7,13 @@ import { Op } from "sequelize";
 // Create a new appointment
 export const addAppointment = async (req, res) => {
   try {
-    const { appointmentNumber, animalOwnerId, animalId, doctorId, date } =
+    const { appointmentNumber, animalOwnerNic, animalId, doctorId, date } =
       req.body;
 
     // Create a new appointment record
     const newAppointment = await Appointment.create({
       appointmentNumber,
-      animalOwnerId,
+      animalOwnerNic,
       animalId,
       doctorId,
       date,
@@ -116,7 +116,7 @@ export const updateAppointment = async (req, res) => {
     const { id } = req.params;
     const {
       appointmentNumber,
-      animalOwnerId,
+      animalOwnerNic,
       animalId,
       doctorId,
       appointmentDate,
@@ -130,7 +130,7 @@ export const updateAppointment = async (req, res) => {
 
     await appointment.update({
       appointmentNumber,
-      animalOwnerId,
+      animalOwnerNic,
       animalId,
       doctorId,
       appointmentDate,

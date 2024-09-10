@@ -8,6 +8,7 @@ import AnimalOwnerRoutes from "./routes/animal-owner.js";
 import sequelize from "./db.js";
 import AppoimentRoutes from "./routes/appoment.js";
 import TreatmentRoutes from "./routes/treatment.js";
+import InventroryRoutes from "./routes/inventroty.js";
 import cors from "cors";
 
 const app = express();
@@ -29,6 +30,7 @@ app.use("/animal", AnimalRoutes);
 app.use("/animal-owner", AnimalOwnerRoutes);
 app.use("/appoiment", AppoimentRoutes);
 app.use("/treatment", TreatmentRoutes);
+app.use("/inventory",InventroryRoutes)
 
 const startServer = async () => {
   try {

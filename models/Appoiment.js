@@ -16,13 +16,9 @@ const Appointment = sequelize.define("Appointment", {
     allowNull: false,
   },
 
-  animalOwnerId: {
-    type: DataTypes.UUID,
+  animalOwnerNic: {
+    type: DataTypes.STRING,
     allowNull: false,
-    references: {
-      model: AnimalOwner,
-      key: "id",
-    },
   },
   animalId: {
     type: DataTypes.UUID,
@@ -49,6 +45,5 @@ const Appointment = sequelize.define("Appointment", {
 // Define relationships
 Appointment.belongsTo(Animal, { foreignKey: "animalId" });
 Appointment.belongsTo(Doctor, { foreignKey: "doctorId" });
-Appointment.belongsTo(AnimalOwner, { foreignKey: "animalOwnerId" });
 
 export default Appointment;
