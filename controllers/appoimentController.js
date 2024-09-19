@@ -29,45 +29,47 @@ export const addAppointment = async (req, res) => {
       .json({ message: `Error adding appointment: ${error.message}` });
   }
 };
-// Get appointments by date
-
-// Get appointments by date
-export const getAppointmentsByDate = async (req, res) => {
+// Get appointments by doctor ID and date
+// Get appointments by doctor ID and date
+export const getAppointmentsByDoctorAndDate = async (req, res) => {
   try {
+    const { doctorId } = req.params;
     const { date } = req.query;
 
-    if (!date) {
+    if (!doctorId || !date) {
       return res
         .status(400)
-        .json({ message: "Date query parameter is required" });
+        .json({ message: "Doctor ID and date query parameters are required" });
     }
 
     const appointments = await Appointment.findAll({
       where: {
+        doctorId: doctorId,
         date: {
-          [Op.startsWith]: date, // Example using Sequelize with `Op` operator
+          [Op.startsWith]: date,
         },
       },
       include: [
         { model: Animal, attributes: ["name"] },
         { model: Doctor, attributes: ["name"] },
-        { model: AnimalOwner, attributes: ["name", "nic"] },
       ],
     });
 
     if (appointments.length === 0) {
-      return res
-        .status(404)
-        .json({ message: "No appointments found for the given date" });
+      return res.status(404).json({
+        message: "No appointments found for the given doctor and date",
+      });
     }
 
     res.status(200).json(appointments);
   } catch (error) {
+    console.error(`Error fetching appointments: ${error.message}`);
     res
       .status(500)
       .json({ message: `Error fetching appointments: ${error.message}` });
   }
 };
+
 // Get all appointments
 export const getAppointments = async (req, res) => {
   try {
