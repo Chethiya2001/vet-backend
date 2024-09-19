@@ -145,3 +145,25 @@ export const deleteDrug = async (req, res) => {
     res.status(500).json({ message: `Error deleting drug: ${error.message}` });
   }
 };
+
+export const getAllIssuedDrugs = async (req, res) => {
+  try {
+    try {
+      const drugs = await DrugInventory.findAll({
+        attributes: ["id", "drugName"],
+      });
+
+      if (!drugs || drugs.length === 0) {
+        return res.status(404).json({ message: "No drugs found in inventory" });
+      }
+
+      res.status(200).json(drugs);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: `Error fetching drugs: ${error.message}` });
+    }
+  } catch (error) {
+    res.status(500).json({ message: `Error fetching drugs: ${error.message}` });
+  }
+};

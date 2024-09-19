@@ -9,6 +9,7 @@ import sequelize from "./db.js";
 import AppoimentRoutes from "./routes/appoment.js";
 import TreatmentRoutes from "./routes/treatment.js";
 import InventroryRoutes from "./routes/inventroty.js";
+import IssueDrugRoutes from "./routes/issueDrug.js";
 import cors from "cors";
 
 const app = express();
@@ -30,8 +31,8 @@ app.use("/animal", AnimalRoutes);
 app.use("/animal-owner", AnimalOwnerRoutes);
 app.use("/appoiment", AppoimentRoutes);
 app.use("/treatment", TreatmentRoutes);
-app.use("/inventory",InventroryRoutes)
-
+app.use("/inventory", InventroryRoutes);
+app.use("/issue-drug", IssueDrugRoutes);
 const startServer = async () => {
   try {
     await sequelize.sync(); // Sync all models with the database
